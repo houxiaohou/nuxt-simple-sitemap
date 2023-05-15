@@ -113,7 +113,7 @@ export async function generateSitemapEntries(options: BuildSitemapOptions) {
         Accept: 'application/json',
       },
       // host is the actual web server being used
-      baseURL: withBase(options.baseURL, siteUrl || options.sitemapConfig.host),
+      baseURL: options.sitemapConfig.host || siteUrl,
       onResponse({ response }) {
         if (typeof response._data === 'string' && response._data.startsWith('<!DOCTYPE html>'))
           isHtmlResponse = true
